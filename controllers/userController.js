@@ -1,6 +1,8 @@
+require("dotenv").config();
 const bcrypt = require("bcrypt");
 const pool = require("../db/db-config");
 const { v4: uuidv4 } = require("uuid");
+const jwt = require("jsonwebtoken");
 
 const userRegistration = async (req, res) => {
   try {
@@ -57,7 +59,26 @@ const userLogin = async (req, res) => {
       );
 
       if (checkPassword) {
-        return res.status(200).json({ token: "", profile: user.rows[0] });
+        const userAccessToken = jwt.sign(
+          { email },
+          process.env.JWT_ACCESS_TOKEN_SECRET,
+          { expiresIn: "120s" }
+        );
+
+        const userRefreshToken = jwt.sign(
+          { email },
+          process.env.JWT_REFRESH_TOKEN_SECRET,
+          { expiresIn: "1d" }
+        );
+
+        res.cookie("jwt", userRefreshToken, {
+          httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000,
+        });
+
+        return res
+          .status(200)
+          .json({ token: userAccessToken, profile: user.rows[0] });
       } else {
         return res
           .status(401)
