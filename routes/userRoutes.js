@@ -1,11 +1,15 @@
 const express = require("express");
 const userRouter = express.Router();
-const {
-  userRegistration,
-  userLogin,
-} = require("../controllers/userController");
+const userRegisterController = require("../controllers/userRegisterController");
+const userLoginController = require("../controllers/userLoginController");
+const userLogoutController = require("../controllers/userLogoutController");
+const userListController = require("../controllers/userListController");
 
-userRouter.route("/register").post(userRegistration);
-userRouter.route("/login").post(userLogin);
+const { jwtAuthentication } = require("../middlewares/jwtAuthentication");
+
+userRouter.route("/register").post(userRegisterController);
+userRouter.route("/login").post(userLoginController);
+userRouter.route("/list").get(userListController);
+userRouter.route("/logout").get(userLogoutController);
 
 module.exports = userRouter;

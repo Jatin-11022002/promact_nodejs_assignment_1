@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-const jwtAuthentication = (req, res, next) => {
+const jwtAuthenticationMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"];
 
@@ -11,7 +11,8 @@ const jwtAuthentication = (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET, (error, data) => {
-      if (error) return res.sendStatus(401).json({ error: "Unauthorized access" });
+      if (error)
+        return res.sendStatus(401).json({ error: "Unauthorized access" });
       else next();
     });
   } catch (error) {
@@ -19,4 +20,4 @@ const jwtAuthentication = (req, res, next) => {
   }
 };
 
-module.exports = { jwtAuthentication };
+module.exports = jwtAuthenticationMiddleware;

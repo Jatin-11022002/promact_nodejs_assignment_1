@@ -1,14 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const server_port = process.env.SERVER_PORT;
+const serverPort = process.env.SERVER_PORT;
 const pool = require("./db/db-config");
+const cookieParser = require("cookie-parser");
 
-const userRoutes = require("./routes/userRoutes");
+const routes = require("./routes/mainRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api/users/", userRoutes);
+app.use(cookieParser());
+app.use("/api/", routes);
 
 app.get("/", async (req, res) => {
   const result = await pool.query(
@@ -17,6 +19,6 @@ app.get("/", async (req, res) => {
   res.json(result);
 });
 
-app.listen(server_port, () => {
-  console.log(`Server Listening on ${server_port}`);
+app.listen(serverPort, () => {
+  console.log(`Server Listening on ${serverPort}`);
 });
