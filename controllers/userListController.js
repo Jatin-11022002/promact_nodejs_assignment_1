@@ -4,7 +4,7 @@ const userListController = async (req, res) => {
   try {
     const { userId } = req.body;
 
-    if (!userId) return res.status(400).json({ error: "Invalid Request" });
+    if (!userId) return res.sendStatus(400).json({ error: "Invalid Request" });
 
     const users = await pool.query(
       `SELECT id, name, email FROM users WHERE id!=$1`,
