@@ -1,6 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const pool = require("../db/db-config");
+const pool = require("../db/dbConnection");
 const bcrypt = require("bcrypt");
 
 const userLoginController = async (req, res) => {

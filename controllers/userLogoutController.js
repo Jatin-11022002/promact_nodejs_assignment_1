@@ -1,4 +1,4 @@
-const pool = require("../db/db-config");
+const pool = require("../db/dbConnection");
 
 const userLogoutController = async (req, res) => {
   try {
