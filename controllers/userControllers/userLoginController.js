@@ -23,14 +23,16 @@ const userLoginController = async (req, res) => {
       );
 
       if (checkPassword) {
+        const username = user.rows[0].name;
+
         const userAccessToken = jwt.sign(
-          { email },
+          { username },
           process.env.JWT_ACCESS_TOKEN_SECRET,
           { expiresIn: "5m" }
         );
 
         const userRefreshToken = jwt.sign(
-          { email },
+          { username },
           process.env.JWT_REFRESH_TOKEN_SECRET,
           { expiresIn: "1d" }
         );
