@@ -6,7 +6,7 @@ const deleteMessageController = require("../controllers/messageControllers/delet
 const getMessagesController = require("../controllers/messageControllers/getMessagesController");
 
 messageRouter.route("/").post(sendMessageController).get(getMessagesController);
-messageRouter.route("/:messageId").post(editMessageController);
+messageRouter.route("/:messageId").put(editMessageController);
 messageRouter.route("/:messageId").delete(deleteMessageController);
 
 module.exports = messageRouter;
