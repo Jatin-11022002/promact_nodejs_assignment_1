@@ -1,6 +1,6 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const pool = require("../db/dbConnection");
+const pool = require("../../db/dbConnection");
 const { v4: uuidv4 } = require("uuid");
 
 const userRegistrationController = async (req, res) => {

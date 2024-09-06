@@ -1,4 +1,4 @@
-const pool = require("../db/dbConnection");
+const pool = require("../../db/dbConnection");
 
 const editMessageController = async (req, res) => {
   try {

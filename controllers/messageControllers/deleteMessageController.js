@@ -1,4 +1,4 @@
-const pool = require("../db/dbConnection");
+const pool = require("../../db/dbConnection");
 
 const deleteMessageController = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-const pool = require("../db/dbConnection");
+const pool = require("../../db/dbConnection");
 const { v4: uuidv4 } = require("uuid");
 
 const sendMessageController = async (req, res) => {
