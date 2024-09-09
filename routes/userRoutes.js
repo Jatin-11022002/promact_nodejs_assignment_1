@@ -9,7 +9,7 @@ const jwtAuthenticationMiddleware = require("../middlewares/jwtMiddlewares/jwtAu
 
 userRouter.route("/register").post(userRegisterController);
 userRouter.route("/login").post(userLoginController);
-userRouter.route("/list").get(jwtAuthenticationMiddleware, userListController);
-userRouter.route("/logout").get(userLogoutController);
+userRouter.route("/users").get(jwtAuthenticationMiddleware, userListController);
+userRouter.route("/logout").post(userLogoutController);
 
 module.exports = userRouter;
