@@ -28,8 +28,17 @@ https://www.postgresql.org/download/
 npm install
 ```
 * Step 3: Change the extension of **.env.sample** to **.env**. This file contains all the values required for the project.
+* 
+* Step 4: Now change the value of the below items in **.env** according to your database configurations:
+ ```
+PSQL_USER
+PSQL_USER_PASSWORD
+PSQL_HOST
+PSQL_PORT
+PSQL_DATABASE
+  ```
   
-* Step 4: Now run the below command to create the required tables in PostgreSQL:
+* Step 5: Now run the below command to create the required tables in PostgreSQL:
 
 ```
 node dbMigration.js
@@ -37,7 +46,7 @@ node dbMigration.js
 
 You will see **Tables Created** message indicating that the required tables are created
   
-* Step 4: Now run the below command to start the project server:
+* Step 6: Now run the below command to start the project server:
 
 ```
 node server.js
