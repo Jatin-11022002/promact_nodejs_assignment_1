@@ -8,6 +8,7 @@ const app = express();
 const userRoutes = require("./userRoutes");
 const refreshTokenRoutes = require("./refreshTokenRoutes");
 const messageRouter = require("./messageRoutes");
+const logsRouter = require("./logsRoutes");
 
 // Import middleware for JWT authentication
 const jwtAuthenticationMiddleware = require("../middlewares/jwtMiddlewares/jwtAuthenticationMiddleware");
@@ -24,6 +25,8 @@ app.use("/token/", refreshTokenRoutes);
 // Requests to '/messages/' will be handled by messageRouter
 // JWT authentication middleware is applied to ensure that only authenticated users can access these routes
 app.use("/messages/", jwtAuthenticationMiddleware, messageRouter);
+
+app.use("/logs/", logsRouter);
 
 // Export the Express application instance for use in other parts of the application
 module.exports = app;
