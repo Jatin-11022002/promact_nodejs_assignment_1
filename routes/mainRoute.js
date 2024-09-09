@@ -26,7 +26,7 @@ app.use("/token/", refreshTokenRoutes);
 // JWT authentication middleware is applied to ensure that only authenticated users can access these routes
 app.use("/messages/", jwtAuthenticationMiddleware, messageRouter);
 
-app.use("/logs/", logsRouter);
+app.use("/logs/", jwtAuthenticationMiddleware, logsRouter);
 
 // Export the Express application instance for use in other parts of the application
 module.exports = app;
