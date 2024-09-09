@@ -24,9 +24,9 @@ userRouter.route("/register").post(userRegisterController);
 userRouter.route("/login").post(userLoginController);
 
 // Route for retrieving a list of users (GET request)
-// - GET /users -> userListController: Handles retrieving the list of users
+// - GET / -> userListController: Handles retrieving the list of users
 //   This route is protected by JWT authentication middleware
-userRouter.route("/users").get(jwtAuthenticationMiddleware, userListController);
+userRouter.route("/").get(jwtAuthenticationMiddleware, userListController);
 
 // Route for user logout (POST request)
 // - POST /logout -> userLogoutController: Handles user logout
