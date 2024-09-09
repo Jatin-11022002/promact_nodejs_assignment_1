@@ -30,11 +30,11 @@ const userRegistrationController = async (req, res) => {
 
     // Generate a unique user ID using UUID
     const userId = uuidv4();
-
+    
     // Hash the user's password using bcrypt with a salt round
     const hashedPassword = await bcrypt.hash(
       password,
-      process.env.BCRYPT_SALT_ROUND
+      Number(process.env.BCRYPT_SALT_ROUND)
     );
 
     // Insert the new user into the users table with the hashed password
